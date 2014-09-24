@@ -36,6 +36,11 @@ describe Player do
         words.each { |word| player.play(word) }
         expect(player.plays).to eq ['bear','and','squid']
       end
+
+      it "returns false if player has won" do
+        awesome_words.each { |word| player.play(word) }
+        expect(player.play('anya')).to eq false
+      end
     end
 
     describe "#total_score" do
@@ -43,9 +48,11 @@ describe Player do
         words.each { |word| player.play(word) }
         expect(player.total_score).to eq 25
       end
+
       it "awesome words have total score of 106" do
         awesome_words.each { |word| player.play(word) }
         expect(player.total_score).to eq 106
+      end
     end
 
     describe "#won?" do
@@ -83,6 +90,20 @@ describe Player do
         expect(player.highest_word_score).to eq 17
       end
     end
+
+    describe "#tiles" do
+      it "returns an array" do
+        expect(player.tiles.class).to eq Array
+      end
+    end
+
+    describe "#draw_tiles(tile_bag)" do
+      let (:tile_bag) {TileBag.new}
+      it "returns an array of length 7" do
+        drawn_tiles = player.draw_tiles(tile_bag)
+        expect(drawn_tiles.class).to eq Array
+        expect(drawn_tiles.length).to eq 7
+      end
+    end
   end
-end
 end

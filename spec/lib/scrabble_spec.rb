@@ -37,20 +37,16 @@ describe Scrabble do
   describe "helper methods" do
     describe "#break_ties(array, best_score)" do
       let (:test_array) {['bear', 'and', 'squid', 'quilts']}
-#      let (:test_hash) { Hash[test_array.collect { |word| [word, Scrabble.score(word)]}] }
-
       it "returns shortest word when tied for high score" do
         expect(Scrabble.break_ties(test_array, 15)).to eq 'squid'
       end
 
       let (:longer_test_array) { ['bear', 'and', 'quids', 'squid', 'quilts'] }
-#      let (:longer_test_hash) { Hash[longer_test_array.collect { |word| [word, Scrabble.score(word)]}] }
       it "returns first word listed when tied for high score and length" do
         expect(Scrabble.break_ties(longer_test_array, 15)).to eq 'quids'
       end
 
       let (:longest_test_array) {['bear', 'and', 'squid', 'quilts', 'quids', 'vamping']}
-#      let (:longest_test_hash) { Hash[longest_test_array.collect { |word| [word, Scrabble.score(word)]}] }
       it "returns 7-letter word when tied for high score" do
         expect(Scrabble.break_ties(longest_test_array, 15)).to eq 'vamping'
       end

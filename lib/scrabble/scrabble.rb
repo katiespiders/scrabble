@@ -41,7 +41,6 @@ class Scrabble
       lengths_of_ties[word] = word.length if score == best_score
     end
     lengths = lengths_of_ties.values
-
     winning_length = lengths.max == 7 ? 7 : lengths.min
 
     if lengths.count(winning_length) == 1
